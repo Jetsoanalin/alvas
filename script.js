@@ -123,6 +123,7 @@ const contributionForm = document.getElementById('contribution-form');
 const amountInput = document.getElementById('amount');
 const contributeButton = document.getElementById('contribute-button');
 const statusDiv = document.getElementById('status');
+const totalContribution = document.getElementById('total-contribution');
 
 if(connectButton){
 	connectButton.addEventListener("click",
@@ -147,6 +148,20 @@ if(contributeButton){
 				const tx = await contract.contribute({value: amount});
 				await tx.wait();
 				statusDiv.textContent = "Contribution Successful!"
+			}catch(error){
+				console.error(error);
+			}
+		}
+	)
+};
+
+if(totalContribution){
+	totalContribution.addEventListener("click",
+		async ()=>{
+			try{
+				const totalRaised = await contract.raisedAmount();
+				const amount = ethers.utils.formatEther(totalRaised);
+				statusDiv.textContent = "Raised Till Now: "+amount+" TXDC";
 			}catch(error){
 				console.error(error);
 			}
