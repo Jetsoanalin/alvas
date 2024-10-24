@@ -2,7 +2,7 @@ const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 
 // Add your own contract address which you deployed on XDC
-const contractAddress = "0xb6ffb90e6f5613745b3308c8f64e699b53660bbc";
+const contractAddress = "";
 
 const contractABI = [
 	{
